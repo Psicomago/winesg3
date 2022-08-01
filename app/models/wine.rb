@@ -4,3 +4,4 @@ class Wine < ApplicationRecord
     has_many :strains, through: :strain_wines
     accepts_nested_attributes_for :strain_wines, allow_destroy: true
 end
+

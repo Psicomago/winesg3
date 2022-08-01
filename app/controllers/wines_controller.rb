@@ -3,7 +3,8 @@ class WinesController < ApplicationController
 
   # GET /wines or /wines.json
   def index
-    @wines = Wine.all
+    #@wines = Wine.all
+    @wines = Wine.all.order(:name).includes(:strain_wines).references(:strains)
   end
 
   # GET /wines/1 or /wines/1.json
@@ -13,6 +14,7 @@ class WinesController < ApplicationController
   # GET /wines/new
   def new
     @wine = Wine.new
+    @strains = Strain.all
   end
 
   # GET /wines/1/edit
@@ -65,6 +67,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name)
+      params.require(:wine).permit(:name, {strain_ids: []})
     end
 end
