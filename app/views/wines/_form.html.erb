@@ -11,32 +11,18 @@
     </div>
   <% end %>
 
-  <div class="tab-content">
-
-  </div>
-
-
-
-
-
-
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="table">
-    <div class="field"> 
-      <%= form.label :strains %>
-        <%= form.collection_check_boxes(:strain_ids, @strains, :id, :name) do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-            <%= b.check_box + b.text %>
-        <% end %>
-      <% end %>
+  <div id="strain_wines" class="form-group">
+    <div class="links form-inline">
+      <%= link_to_add_association 'add strain', form, :strain_wines %>
+    </div>
+  </div>
 
-
-
+  
   <div class="actions">
     <%= form.submit %>
   </div>

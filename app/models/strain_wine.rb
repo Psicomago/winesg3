@@ -4,3 +4,6 @@ class StrainWine < ApplicationRecord
   accepts_nested_attributes_for :strain, allow_destroy: true
 end
 
+def to_s
+  percentage
+end

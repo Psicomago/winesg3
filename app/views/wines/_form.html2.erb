@@ -1,0 +1,90 @@
+
+<%= form_with(model: wine, local: true) do |form| %>
+  <% if wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+      <% wine.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  
+
+
+  <div class="tab-content">
+    <div class="container">
+      <div class= "row"> 
+        <div class="col">
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <h3> Cepas </h3>
+        </div>
+        <div class="col-sm-6 form-group">
+          <h3> Lista de cepas agregadas </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class= "col-sm-6 form-group">
+          <div class="field"> 
+            <table class= "table">
+              <thead>
+                <tr>
+                  <th>Cepas</th>
+                  <th>Porcentaje</th>
+                  <th colspan="1"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= form.collection_check_boxes(:strain_ids, @strains, :id, :name, :percentage) do |b| %>
+                  <tr>
+                    <td>
+                      <%= b.label class:"label-checkbox" do %>
+                        <%= b.check_box + b.text %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= form.fields_for :strain_wines do |sw| %>
+                        <div class="strain_wines_fields">
+                          <div class="fields">
+                            <%= sw.label "porcentaje" %>
+                            <%= sw.number_field :percentage %>
+                          </div>
+                        </div>
+                        <div class="actions">
+                          <%= sw.submit %>
+                        </div>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class= "col-sm-6 form-group">
+              <h1> aqui va la lista </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="table">
+    
+  </div>
+ 
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -4,3 +4,7 @@ class Strain < ApplicationRecord
     has_many :wines, through: :strain_wines
 
 end
+
+def to_s
+    name
+end
