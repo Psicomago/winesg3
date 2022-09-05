@@ -8,3 +8,15 @@ end
 def to_s
     name
 end
+
+def cal_strain
+    if @percentaje = 100
+        @category = "wine"
+    else
+
+    end
+end
+
+def load_strain
+    @strains = Strain.pluck(:name, :id)
+end
